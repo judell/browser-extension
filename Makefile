@@ -55,6 +55,7 @@ build/client/build: node_modules/hypothesis/build/manifest.json
 	@# will complain.
 	rm $@/manifest.json
 build/client/app.html: src/client/app.html.mustache build/client build/.settings.json
+	cp pagefit.js build/client/.
 	tools/template-context-app.js build/.settings.json | $(MUSTACHE) - $< >$@
 build/settings-data.js: src/chrome/settings-data.js.mustache build/client build/.settings.json
 	tools/template-context-settings.js build/.settings.json | $(MUSTACHE) - $< >$@
