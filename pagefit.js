@@ -19,4 +19,5 @@ function adjuster() {
 
 window.onload = adjuster
 
-window.onresize = adjusters
+window.onresize = adjuster
+
