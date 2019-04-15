@@ -3,12 +3,10 @@ function adjust(e) {
   const eWidth = parseInt(window.getComputedStyle(e)['width'].replace('px',''))
   const bodyWidth = window.innerWidth
   const diff = bodyWidth - eWidth
-  const marginLeft = window.getComputedStyle(e)['margin-left']
   const adjustment = 428
   if ( diff < adjustment ) {
     const adjusted = (eWidth-(adjustment-diff)) + 'px'
 	e.style.width = adjusted
-	e.style.marginLeft = marginLeft
   }
 }
 
