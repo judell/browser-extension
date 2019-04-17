@@ -6,6 +6,12 @@
     .hint {
       font-size: 90%;
     }
+    .pageFitters {
+      border-style: solid;
+      border-width: thin;
+      padding: 6px;
+      line-height: 2;
+    }
   </style>
 </head>
 
@@ -19,6 +25,25 @@
         if you do not wish the extension to make requests to the Hypothesis
         service for this data.
     </p>
+
+    <p>
+      PDF viewer 
+    </p>
+
+    <div class="pageFitters">
+      <div>
+      <input type="radio" checked value="default" name="pdfPagefit">
+      <label for="pdfPageFit">Allow the sidebar to overlap the PDF viewer</label>
+      </div>
+      <div>
+      <input type="radio" value="noOverlap" name="pdfPagefit">
+      <label for="pdfPageFit">Prevent the sidebar from overlapping the PDF viewer</label>
+      </div>
+      <div>
+      <input type="radio" value="someOverlap" name="pdfPagefit">
+      <label for="pdfPageFit">Allow overlap only when the browser window is narrow</label>
+      </div>
+    </div>
 
     <script src="options.js"></script>
   </main>
