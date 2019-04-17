@@ -1,18 +1,20 @@
 function maybeLoadPageFitter() {
+  const body = document.querySelector('body')
   chrome.storage.sync.get( 
     {
       pageFitter: 'default',
+      breakpoint: '900',
     },
     function(items) {
       if (items.pageFitter === 'noOverlap') {
         function adjuster() {
-          adjust(document.querySelector('body'), false)
+          adjust(body, false)
         }
         window.onload = adjuster
         window.onresize = adjuster
       } else if (items.pageFitter === 'someOverlap') {
         function adjuster() {
-          adjust(document.querySelector('body'), true)
+          adjust(body, true, parseInt(items.breakpoint))
         }
         window.onload = adjuster
         window.onresize = adjuster
@@ -25,19 +27,31 @@ function maybeLoadPageFitter() {
 
 maybeLoadPageFitter()
 
-function adjust(e, someOverlap) {
-  e.style.width = '100%'
-  const eWidth = parseInt(window.getComputedStyle(e)['width'].replace('px',''))
-  console.log(eWidth)
-  if ( someOverlap && ( eWidth < 1000 || eWidth > 1500) ) {
-    return
-  }
-  const bodyWidth = window.innerWidth
-  const diff = bodyWidth - eWidth
-  const adjustment = 428
-  if ( diff < adjustment ) {
-    const adjusted = (eWidth-(adjustment-diff)) + 'px'
-	e.style.width = adjusted
-  }
+function getViewerWidth() {
+  const viewer = getViewer()
+  return parseInt(window.getComputedStyle(viewer)['width'].replace('px',''))
 }
+
+function getBodyWidth() {
+  const body = document.querySelector('body')
+  return parseInt(window.getComputedStyle(body)['width'].replace('px',''))
+}
+
+function getViewer() {
+  return document.getElementById('outerContainer')
+}
+
+function adjust(body, someOverlap, breakpoint) {
+  body.style.width = '100%'
+  const windowWidth = window.innerWidth
+  const sidebarWidth = 428
+  const adjustedBodyWidth = (windowWidth - sidebarWidth) + 'px'
+  if ( someOverlap && windowWidth <= breakpoint ) {
+    getViewer().style.width = localStorage.getItem('pdfViewerWidth') + 'px'
+  } else {
+    getViewer().style.width = adjustedBodyWidth
+    localStorage.setItem('pdfViewerWidth', getViewerWidth())
+  } 
+}
+
 
