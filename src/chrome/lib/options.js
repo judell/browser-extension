@@ -24,7 +24,7 @@ function loadOptions() {
     {
       badge: true,
       pageFitter: 'default',
-      breakpoint: '900',
+      breakpoint: '1000',
     },
     function(items) {
       document.getElementById('badge').checked = items.badge
