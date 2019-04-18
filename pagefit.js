@@ -3,7 +3,7 @@ function maybeLoadPageFitter() {
   chrome.storage.sync.get( 
     {
       pageFitter: 'default',
-      breakpoint: '900',
+      breakpoint: '1000',
     },
     function(items) {
       if (items.pageFitter === 'noOverlap') {
