@@ -1,3 +1,5 @@
+// for pdf pagegitting, should be called pdfPagefit.js
+
 function maybeLoadPageFitter() {
   const body = document.querySelector('body')
   chrome.storage.sync.get( 
