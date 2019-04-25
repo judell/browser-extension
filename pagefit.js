@@ -1,4 +1,11 @@
-// for pdf pagegitting, should be called pdfPagefit.js
+window.hypothesisConfig = function() {
+  return {
+    "onLayoutChange": function(obj) {
+      console.log(`onLayoutChange ${JSON.stringify(obj)}`)
+      },
+    "openSidebar": true
+  }
+}
 
 function maybeLoadPageFitter() {
   const body = document.querySelector('body')

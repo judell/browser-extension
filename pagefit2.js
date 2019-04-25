@@ -1,6 +1,3 @@
-// for html pagegitting, should be called htmlPagefit.js
-
-
 try {
   document.getElementById('hypothesisWrapper').remove()
 } catch {}
