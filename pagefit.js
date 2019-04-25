@@ -11,7 +11,7 @@ function maybeLoadPageFitter() {
   const body = document.querySelector('body')
   chrome.storage.sync.get( 
     {
-      pageFitter: 'default',
+      pageFitter: 'noOverlap',
       breakpoint: '1000',
     },
     function(items) {
