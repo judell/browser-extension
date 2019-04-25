@@ -23,7 +23,7 @@ function loadOptions() {
   chrome.storage.sync.get(
     {
       badge: true,
-      pageFitter: 'default',
+      pageFitter: 'noOverlap',
       breakpoint: '1000',
     },
     function(items) {
