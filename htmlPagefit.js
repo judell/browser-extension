@@ -49,7 +49,7 @@ function hypothesisWideElementsAdjust(width) {
   for (let i = 0; i < hypothesisWideElements.length; i++) {
     const element = hypothesisWideElements[i]
     element.style.width = '100%'
-    element.style.width = width
+    element.style.width = hypothesisComputeWrapperWidth()
   }
 }
 
