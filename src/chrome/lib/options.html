@@ -6,7 +6,7 @@
     .hint {
       font-size: 90%;
     }
-    .pageFitters {
+    .pdfPageFitters, .htmlPageFitters {
       border-style: solid;
       border-width: thin;
       padding: 6px;
@@ -37,7 +37,7 @@
       PDF viewer 
     </p>
 
-    <div class="pageFitters">
+    <div class="pdfPageFitters">
       <div>
       <input type="radio" value="default" name="pdfPagefit">
       <label for="pdfPageFit">Allow the sidebar to overlap the PDF viewer</label>
@@ -54,6 +54,21 @@
       min width at which to allow overlap <input value="900" id="pdfOverlapBreakpoint">
       </div>
     </div>
+
+    <p>
+      HTML viewer 
+    </p>
+
+    <div class="htmlPageFitters">
+      <div>
+      <input type="radio" value="default" name="htmlPagefit">
+      <label for="htmlPageFit">Allow the sidebar to overlap the HTML page</label>
+      </div>
+      <div>
+      <input type="radio" checked value="noOverlap" name="htmlPagefit">
+      <label for="htmlPageFit">Prevent the sidebar from overlapping the HTML page</label>
+      </div>
+    </div>    
 
     <p>Tags (comma-separated list)</p>
 
