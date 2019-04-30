@@ -30,15 +30,15 @@ function saveOptions() {
   let tags = document.getElementById('tags').value
   if (tags) {
       try {
-      tags = tags.split(',').map(tag => { return ' ' + tag.trim() } )
-      localStorage.setItem('hypothesis.user.tags.list', JSON.stringify(tags))
-      const map = {}
-      tags.forEach(tag => {
-        map[tag] = {}
-      })
-      localStorage.setItem('hypothesis.user.tags.map', JSON.stringify(map))
-    } catch { 
-      console.error(e) 
+        tags = tags.split(',').map(tag => { return ' ' + tag.trim() } )
+        localStorage.setItem('hypothesis.user.tags.list', JSON.stringify(tags))
+        const map = {}
+        tags.forEach(tag => {
+          map[tag] = {}
+        })
+        localStorage.setItem('hypothesis.user.tags.map', JSON.stringify(map))
+    } catch (e) { 
+      console.log(e.message)
     }
   }
 }
@@ -47,24 +47,24 @@ function loadOptions() {
   chrome.storage.sync.get(
     {
       badge: true,
-      pdfPageFitter: 'noOverlap',
-      htmlPageFitter: 'noOverlap',
+      pdfPageFitter: null,
+      htmlPageFitter: null,
       breakpoint: '1000',
     },
     function(items) {
       document.getElementById('badge').checked = items.badge
       document.getElementById('pdfOverlapBreakpoint').value = items.breakpoint
-      for (let i = 0; i > pdfPageFitters.length; i++) {
-          if (pdfPageFitters[i].value === items.pdfPageFitter) {
-              pdfPageFitters[i].checked = true
-              break
-          }
+      for (let i = 0; i < pdfPageFitters.length; i++) {
+        if (pdfPageFitters[i].value === items.pdfPageFitter) {
+            pdfPageFitters[i].checked = true
+            break
+        }
       }
       for (let i = 0; i <  htmlPageFitters.length; i++) {
-          if (htmlPageFitters[i].value === items.htmlPageFitter) {
-              htmlPageFitters[i].checked = true
-              break
-          }
+        if (htmlPageFitters[i].value === items.htmlPageFitter) {
+            htmlPageFitters[i].checked = true
+            break
+        }
       }
     }
   )
@@ -73,7 +73,6 @@ function loadOptions() {
     let tags = JSON.parse(localStorage.getItem('hypothesis.user.tags.list'))
     document.getElementById('tags').value =  tags.map(t => { return t.trim() }).join(', ')
   } catch (e) {
-    console.error(e)
   }
 
 }
