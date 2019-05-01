@@ -59,8 +59,6 @@ function hypothesisAdjust() {
   const width = `${hypothesisComputeWrapperWidth()}px`
   hypothesisWideElementsAdjust(width)
   wrapper.style.width = width
-  wrapper.style.marginLeft = '1em'
-  wrapper.style.paddingLeft = '1em'
 }
 
 //hypothesisWrapperAdjust()
