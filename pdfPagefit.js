@@ -2,7 +2,14 @@ window.hypothesisConfig = function() {
   return {
     "onLayoutChange": function(obj) {
       console.log(`onLayoutChange ${JSON.stringify(obj)}`)
-      },
+      localStorage.setItem('hypothesisSidebarExpanded', obj.expanded)
+      if (obj.expanded == false && obj.height > 0 ) {
+        getViewer().style.width = '100%'
+      } else {
+        adjust(document.body)
+      }
+      window.dispatchEvent(new Event('resize'))
+    },
     "openSidebar": true
   }
 }
@@ -52,6 +59,9 @@ function getViewer() {
 
 function adjust(body, someOverlap, breakpoint) {
   body.style.width = '100%'
+  if (localStorage.getItem('hypothesisSidebarExpanded') === 'false') {
+    return
+  }
   const windowWidth = window.innerWidth
   const sidebarWidth = 428
   const adjustedBodyWidth = (windowWidth - sidebarWidth) + 'px'

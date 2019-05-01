@@ -4095,7 +4095,7 @@ var PDFSidebar = function () {
           return;
       }
       this.active = view | 0;
-      if (forceOpen && !this.isOpen) {
+	if (forceOpen && !this.isOpen && document.getElementById('outerContainer').width) ) {
         this.open();
         return;
       }
