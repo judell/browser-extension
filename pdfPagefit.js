@@ -6,7 +6,7 @@ window.hypothesisConfig = function() {
       if (obj.expanded == false && obj.height > 0 ) {
         getViewer().style.width = '100%'
       } else {
-        adjust(document.body)
+        checkSettingsAndMaybeAdjust(document.body)
       }
       window.dispatchEvent(new Event('resize'))
     },
@@ -16,32 +16,35 @@ window.hypothesisConfig = function() {
 
 function maybeLoadPageFitter() {
   const body = document.querySelector('body')
-  chrome.storage.sync.get( 
-    {
-      pdfPageFitter: 'noOverlap',
-      breakpoint: '1000',
-    },
-    function(items) {
-      if (items.pdfPageFitter === 'noOverlap') {
-        function adjuster() {
-          adjust(body, false)
-        }
-        window.onload = adjuster
-        window.onresize = adjuster
-      } else if (items.pdfPageFitter === 'someOverlap') {
-        function adjuster() {
-          adjust(body, true, parseInt(items.breakpoint))
-        }
-        window.onload = adjuster
-        window.onresize = adjuster
-      } else {
-        // retain default behavior
-      }
-    }
-  )
+  checkSettingsAndMaybeAdjust(body);
 }
 
 maybeLoadPageFitter()
+
+function checkSettingsAndMaybeAdjust(body) {
+  chrome.storage.sync.get({
+    pdfPageFitter: 'noOverlap',
+    breakpoint: '1000',
+  }, function (items) {
+    if (items.pdfPageFitter === 'noOverlap') {
+      function adjuster() {
+        adjust(body, false);
+      }
+      window.onload = adjuster;
+      window.onresize = adjuster;
+    }
+    else if (items.pdfPageFitter === 'someOverlap') {
+      function adjuster() {
+        adjust(body, true, parseInt(items.breakpoint));
+      }
+      window.onload = adjuster;
+      window.onresize = adjuster;
+    }
+    else {
+      // retain default behavior
+    }
+  });
+}
 
 function getViewerWidth() {
   const viewer = getViewer()
