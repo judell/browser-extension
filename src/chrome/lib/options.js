@@ -71,7 +71,8 @@ function loadOptions() {
 
   try {
     let tags = JSON.parse(localStorage.getItem('hypothesis.user.tags.list'))
-    document.getElementById('tags').value =  tags.map(t => { return t.trim() }).join(', ')
+    document.getElementById('tags').value = tags.filter(t => {return t.startsWith(' ')})
+      .map(t => { return t.trim() }).join(', ')
   } catch (e) {
   }
 
