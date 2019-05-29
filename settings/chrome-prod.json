@@ -9,8 +9,7 @@
   "serviceUrl": "https://hypothes.is/",
   "websocketUrl": "wss://hypothes.is/ws",
 
-  "oauthClientId": "87457baa-c5bd-11e7-b2b9-fbd7e0d04a29",
-  "oauthEnabled": true,
+  "oauthClientId": "fd23fe2e-7792-11e7-8e16-23e47a1799d4",
 
   "sentryPublicDSN": "https://934d4f62912b47d8bb03c28ae6670cf8@app.getsentry.com/69811",
   "googleAnalytics": "UA-26026798-5",
